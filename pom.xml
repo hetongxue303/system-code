@@ -10,6 +10,11 @@
     <version>1.0-SNAPSHOT</version>
     <description>后台系统父级依赖</description>
 
+    <!--模块管理-->
+    <modules>
+        <module>common</module>
+    </modules>
+
     <!--打包方式-->
     <packaging>pom</packaging>
 
