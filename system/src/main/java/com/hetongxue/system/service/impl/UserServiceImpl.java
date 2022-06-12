@@ -10,6 +10,8 @@ import com.hetongxue.system.service.PermissionService;
 import com.hetongxue.system.service.RoleService;
 import com.hetongxue.system.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -31,6 +33,15 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     private final UserMapper userMapper;
     private final RoleService roleService;
     private final PermissionService permissionService;
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        User user = getUserByUsername(username);
+        if (user == null) throw new UsernameNotFoundException("用户名或密码错误");
+        // 这里获取用户角色、权限信息...
+        getRolePermissionCode(user.getId());
+        return user;
+    }
 
     @Override
     @Transactional(propagation = Propagation.SUPPORTS)

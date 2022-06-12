@@ -3,7 +3,7 @@ package com.hetongxue.configuration.security;
 import com.hetongxue.security.filter.CaptchaFilter;
 import com.hetongxue.security.filter.JwtAuthenticationFilter;
 import com.hetongxue.security.handler.*;
-import com.hetongxue.security.service.CustomizeUserDetailsService;
+import com.hetongxue.system.service.impl.UserServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -35,7 +35,7 @@ public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter {
     private final CustomizeLogoutSuccessHandler logoutSuccessHandler;
     private final CustomizeAccessDeniedHandler accessDeniedHandler;
     private final CustomizeAuthenticationEntryPoint authenticationEntryPoint;
-    private final CustomizeUserDetailsService userDetailsService;
+    private final UserServiceImpl userDetailsService;
     private final CaptchaFilter captchaFilter;
 
     @Bean
